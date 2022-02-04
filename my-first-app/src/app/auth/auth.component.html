@@ -1,0 +1,56 @@
+   
+<div class="login-wrapper">
+  <div class="row">
+    <div class="card-body">
+      <div class="text-center">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="form-signin" *ngIf="!isLoading">
+          
+          <marquee  class = "marquee" behavior="" direction="left">It is a Library Application please use your credentials </marquee>
+         
+          <div class="form-group">
+            <label for="email"  class="sr-only">E-Mail</label>
+            <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="email"
+            ngModel
+            name="email"
+            required
+            email  #check=ngModel/>
+            <span class="help-block" style="color: red;" *ngIf="!check.valid && check.touched">please enter the user name</span>
+          </div>
+          <div class="form-group">
+            <label for="password"  class="sr-only">Password</label>
+            <input
+             type="password"
+             id="password"
+             class="form-control"
+             placeholder="password"
+             ngModel
+             name="password"
+             required
+             #checking=ngModel
+             minlength="6"
+            />
+            <span class="help-block" style="color: red;" *ngIf="!checking.valid && checking.touched">please enter the password</span>
+          </div>
+          <div>
+            <button
+             class="btn btn-primary"
+             type="submit"
+             [disabled]="!authForm.valid"
+            >
+             {{ isLoginMode ? 'Login' : 'Sign Up' }}
+            </button>
+            |
+            <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+             Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+            </button>
+          </div>
+        </form>
+      </div>
+   </div>
+ </div>
+</div>
+

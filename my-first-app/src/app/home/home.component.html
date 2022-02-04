@@ -1,0 +1,50 @@
+ <div class="container">
+   <div class="row">
+    <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)" >
+
+      <div class="form-group">
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" class="form-control" ngModel name="studentName" required #data = ngModel>
+        <span class="help-block" style="color: red;" *ngIf="!data.valid && data.touched">please enter the Student  name</span>
+      </div>
+      
+       <div class="form-group">
+         <label for="bookList">BookName</label>
+         <input type="text" id="bookList" class="form-control" ngModel name="bookList" required #data = ngModel>
+         <span class="help-block" style="color: red;" *ngIf="!data.valid && data.touched">please enter the bookname name</span>
+       </div>
+       <div class="form-group">
+         <label for="author">WriterName</label>
+         <input type="text" id="author" class="form-control" ngModel name="author" required #checking = ngModel >
+         <span class="help-block" style="color: red;" *ngIf="!checking.valid && checking.touched">please enter the Writer name</span>
+       </div>
+       <div class="form-group">
+         <label for="qty">QTY</label>
+         <input type="number" id="qty" class="form-control" ngModel  name="qty" required #checked = ngModel>
+         <span class="help-block" style="color: red;" *ngIf="!checked.valid && checked.touched">please select quantity</span>
+       </div>
+        <div class="form-group">
+           <button type="submit" class="btn-primary" [disabled]="!postForm.valid">Submit</button>
+        </div>
+    </form>
+       <hr>
+       <button class="btn-primary" (click)="onFetchPosts()">Fetch</button> |
+       <button class="btn-danger" (click)="onClearPosts()">delete</button>
+   </div>
+ </div>
+ <hr/>
+<div class="row">
+  <div class="container">
+    <div>
+       <p *ngIf="postArray.length < 1 && !isFetching">No Data.....!</p>
+       <ul class="list-group" *ngIf="postArray.length >= 1 && !isFetching" >
+         <li class="list-group" *ngFor="let post of postArray">
+           <h3>BookName:{{post.bookList}}</h3>
+           <h3>Author:{{post.author}}</h3>
+           <h4>  QTY:{{post.qty}}</h4>
+         </li>
+       </ul>
+    </div>
+  </div>
+</div>
+

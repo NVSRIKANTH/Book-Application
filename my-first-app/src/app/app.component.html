@@ -1,0 +1,19 @@
+   <div class="class">
+  <div class="row">
+  <ul class="nav nav-tabs">
+    <li routerLinkActive = "active"  
+    *ngIf="isAuthenticated"><a routerLink="/library">Library</a></li>
+    <li routerLinkActive = "active" 
+    *ngIf="isAuthenticated"><a routerLink="/home">Registration</a></li>
+    <li routerLinkActive = "active" class="nav navbar-nav navbar-right"
+     style="padding-right:3rem; cursor: pointer;"
+      *ngIf="isAuthenticated"><a (click)="onLogout()">LOGOUT</a></li>
+    <li routerLinkActive = "active" 
+    class="nav navbar-nav navbar-right" 
+    *ngIf="!isAuthenticated" style="padding-right:3rem;" ><a role="presentation" routerLink="/auth">LOGIN</a></li>
+  </ul>
+</div>
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+</div>
